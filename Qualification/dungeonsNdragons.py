@@ -11,6 +11,7 @@ def findWays(m, n, x):
         table[1][j] = 1
         j += 1
     for i in range(2,n+1):
+        table[-1] = [0] * len(table[1])
         for j in range(1,x+1):
             k = 1
             while k <= m and k < j:
