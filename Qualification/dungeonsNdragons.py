@@ -2,8 +2,10 @@
 __author__ = "Moonis Javed"
 __email__ = "monis.javed@gmail.com"
 
+from copy import copy
+
 def findWays(m, n, x):
-    table = [[0 for i in xrange(x+1)] for j in xrange(n+1)]
+    table = [[0 for i in xrange(x+1)] for j in xrange(3)]
     j = 1
     while j <= m and j <= x:
         table[1][j] = 1
@@ -12,9 +14,10 @@ def findWays(m, n, x):
         for j in range(1,x+1):
             k = 1
             while k <= m and k < j:
-                table[i][j] += table[i-1][j-k]
+                table[-1][j] += table[1][j-k]
                 k += 1
-    return table[n]
+        table[1] = copy(table[-1])
+    return table[-1]
 
 if __name__ == "__main__":
     f = open("input1.txt").read().split("\n")
